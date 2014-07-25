@@ -1,0 +1,52 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title FlatUI AngularJS Template
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black")
+        link(rel='stylesheet', href='/flat-ui/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', href='/flat-ui/css/flat-ui.css')
+        //HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.
+        //[if lt IE 9]
+        script(src="/flat-ui/js/html5shiv.js")
+        //[endif]
+                           
+    body(ng-app="flatuiApp")
+        div.container(ng-controller="FlatUICtrl")
+            p.lorem_s1_2x3
+            //div.row
+                div.col-md-2
+                    flatui-checkbox(ng-repeat="item in checkbox1.options" model="item.selected" label="item.name" value="item.id" name="valcontainer0")
+                div.col-md-2
+                    flatui-checkbox(ng-repeat="item in checkbox1.options" model="item.selected" label="item.name" value="item.id" name="valcontainer0" disabled="")
+                div.col-md-2
+                    flatui-radio(ng-repeat="item in radio1.options" model="radio1.selected" label="item.name" value="item.id" name="valcontainer1")
+                div.col-md-2
+                    flatui-radio(ng-repeat="item in radio1.options" model="radio1.selected" label="item.name" value="item.id" name="valcontainer1" disabled="")
+                div.col-md-2
+                    flatui-switch(model="switch1")
+                div.col-md-2
+                    flatui-switch(model="switch1" square="" disabled="")
+
+        script(src="/angular/angular.min.js")
+        script(src="/scripts/app.js")
+        script(src="/scripts/controllers/flatui.ctrl.js")
+        script(src="/scripts/directives/flatui.radio.js")
+        script(src="/scripts/directives/flatui.checkbox.js")
+        script(src="/scripts/directives/flatui.switch.js")
+        script(src="/flat-ui/js/jquery-1.8.3.min.js")
+        script(src="/flat-ui/js/jquery-ui-1.10.3.custom.min.js")
+        script(src="/flat-ui/js/jquery.ui.touch-punch.min.js")
+        script(src="/flat-ui/js/bootstrap.min.js")
+        script(src="/flat-ui/js/bootstrap-select.js")
+        //- script(src="/flat-ui/js/bootstrap-switch.js")
+        //- script(src="/flat-ui/js/flatui-checkbox.js")
+        //- script(src="/flat-ui/js/flatui-radio.js")
+        script(src="/flat-ui/js/jquery.tagsinput.js")
+        script(src="/flat-ui/js/jquery.placeholder.js")
+        script(src="http://vjs.zencdn.net/4.3/video.js")
+        script(src="/flat-ui/js/application.js")
+        script(src="/lorem/src/library/lorem.js")
+        script (function($) { $('.container').ipsum();}(jQuery));

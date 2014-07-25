@@ -1,0 +1,5 @@
+label.radio(ng-class="{'checked': model == value, 'disabled': disabled}") {{label}}
+    span.icons
+        span.first-icon.fui-radio-unchecked
+        span.second-icon.fui-radio-checked
+    input(type="radio" ng-model="model" ng-disabled="disabled" ng-value="value" ng-required="required" name="name")

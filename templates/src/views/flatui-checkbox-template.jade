@@ -1,0 +1,5 @@
+label.checkbox(ng-class="{'checked': model, 'disabled': disabled}") {{label}}
+    span.icons
+        span.first-icon.fui-checkbox-unchecked
+        span.second-icon.fui-checkbox-checked
+    input(type="checkbox" ng-model="model" ng-disabled="disabled" ng-value="value" ng-required="required" name="name")

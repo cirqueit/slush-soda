@@ -1,0 +1,5 @@
+div.switch.has-switch(ng-click="model = disabled && model || !disabled && !model" ng-class="{'deactivate': disabled, 'switch-square': square}")
+    div.switch-animate(ng-class="{'switch-off': !model, 'switch-on': model}")
+        span.switch-left(ng-bind="onLabel")
+        label &nbsp
+        span.switch-right(ng-bind="offLabel")

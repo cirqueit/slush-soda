@@ -1,0 +1,17 @@
+{
+  "name": "slush-soda",
+  "version": "0.0.0",
+  "description": "Base slush generator for AngularJS/Flat-UI projects",
+  "main": "slushfile.js",
+  "keywords": [
+    "slushgenerator"
+  ],
+  "author": "Joe Edwards",
+  "dependencies": {
+    "gulp": "^3.7.0",
+    "gulp-install": "~0.1.8",
+    "gulp-template": "~0.1.1",
+    "gulp-conflict": "~0.1.2",
+    "inquirer": "~0.5.1"
+  }
+}
