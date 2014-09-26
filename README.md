@@ -7,10 +7,9 @@ Install `node.js` and required packages
 
 [nodejs.org](http://nodejs.org)
 
-    sudo npm install -g bower
-    sudo npm install -g gulp
-    sudo npm install -g slush
-
+    [sudo] npm install -g bower
+    [sudo] npm install -g gulp
+    [sudo] npm install -g slush
 
 ###Installation
 
