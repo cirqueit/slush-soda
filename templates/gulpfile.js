@@ -82,6 +82,7 @@ gulp.task('styles', function() {
 gulp.task('serve', function() {
     var app = express();
     app.use(express.static('public'));
+    app.use(express.static('bower_components/fui-angular'));
     app.use(express.static('bower_components'));
     app.listen(appPort);
 });
