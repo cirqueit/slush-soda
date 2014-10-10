@@ -20,7 +20,7 @@ var appPort = 9000,
     plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}};
 
 gulp.task('clean', function() {
-    return del.sync(['public/*']);
+    return del.sync(['public']);
          
 });
 

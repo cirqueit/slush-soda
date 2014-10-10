@@ -1,6 +1,6 @@
 {
   "name": "gulp-soda",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Base AngularJS/Flat UI template for gulp.js",
   "main": "gulpfile.js",
   "scripts": {

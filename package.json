@@ -1,6 +1,6 @@
 {
   "name": "slush-soda",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Base slush generator for AngularJS/Flat-UI projects",
   "main": "slushfile.js",
   "keywords": [
