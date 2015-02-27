@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     embedlr = require('gulp-embedlr'),
     express = require('express'),
+    bodyParser = require('body-parser'),
     ip = require('ip');
 
 var appPort = 9001,
@@ -18,7 +19,8 @@ var appPort = 9001,
     lrOpt = {port: lrPort},
     location = { hostname: ip.address() },
     inlineOpt = { minify: false },
-    plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}};
+    plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}},
+    jsonParser = bodyParser.json();
 
 gulp.task('clean', function() {
     return del.sync(['public']);
@@ -85,6 +87,9 @@ gulp.task('serve', function() {
     app.use(express.static('public'));
     app.use(express.static('bower_components/fui-angular'));
     app.use(express.static('bower_components'));
+    app.post('/', jsonParser, function(req, res) {
+        //
+    });  
     app.listen(appPort);
 });
 
