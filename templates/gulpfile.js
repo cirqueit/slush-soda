@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    fs = require('fs'),
     http = require('http'),
     del = require('del'),
     plumber = require('gulp-plumber'),
@@ -12,7 +13,7 @@ var gulp = require('gulp'),
     express = require('express'),
     ip = require('ip');
 
-var appPort = 9000,
+var appPort = 9001,
     lrPort = 35728,
     lrOpt = {port: lrPort},
     location = { hostname: ip.address() },
@@ -93,26 +94,17 @@ gulp.task('default_watch', function() {
     gulp.watch('src/**/*.html', ['html']);
     gulp.watch('src/scripts/**/*.js', ['scripts', 'html']);
     gulp.watch('src/styles/**/*.css', ['styles', 'html']);
-});
-
-gulp.task('caffeine_watch', function() {
-    gulp.watch('src/assets/**/*', ['assets']);
-    gulp.watch('src/vendor/**/*', ['vendor']);
     gulp.watch('src/**/*.jade', ['jade']);
-    gulp.watch('src/styles/**/*.styl', ['stylus']);
-    gulp.watch('src/scripts/**/*.coffee', ['coffee']);
+    gulp.watch('src/styles/**/*.styl', ['stylus','jade']);
+    gulp.watch('src/scripts/**/*.coffee', ['coffee','jade']);
 });
 
 gulp.task('default', ['html',
+                      'jade',
                       'scripts',
+                      'coffee',
                       'styles',
+                      'stylus',
                       'extern',
                       'serve',
                       'default_watch']);
-
-gulp.task('caffeine', ['jade',
-                       'stylus',
-                       'coffee',
-                       'extern',
-                       'serve',
-                       'caffeine_watch']);
