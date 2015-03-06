@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     jade = require('gulp-jade'),
     stylus = require('gulp-stylus'),
+    babel = require('gulp-babel'),
     sourcemaps = require('gulp-sourcemaps'),
     coffee = require('gulp-coffee'),
     livereload = require('gulp-livereload'),
@@ -63,6 +64,9 @@ gulp.task('coffee', function() {
 gulp.task('scripts', function() {
     return gulp.src('src/scripts/**/*.js')
            .pipe(plumber(plumberOpt))
+           .pipe(sourcemaps.init())
+           .pipe(babel())
+           .pipe(sourcemaps.write('../maps'))
            .pipe(gulp.dest('public/scripts/'))
            .pipe(livereload(lrPort));
 });
