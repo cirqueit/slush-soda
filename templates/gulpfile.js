@@ -5,9 +5,10 @@ var gulp = require('gulp'),
     del = require('del'),
     plumber = require('gulp-plumber'),
     jade = require('gulp-jade'),
+    less = require('gulp-less'),
     stylus = require('gulp-stylus'),
-    babel = require('gulp-babel'),
     sourcemaps = require('gulp-sourcemaps'),
+    babel = require('gulp-babel'),
     coffee = require('gulp-coffee'),
     livereload = require('gulp-livereload'),
     embedlr = require('gulp-embedlr'),
@@ -17,8 +18,8 @@ var gulp = require('gulp'),
 
 var appPort = 9001,
     lrPort = 35728,
-    lrOpt = {port: lrPort},
-    location = { hostname: ip.address() },
+    lrOpt = {host: ip.address(), port: lrPort},
+    location = { hostname: ip.address()},
     inlineOpt = { minify: false },
     plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}},
     jsonParser = bodyParser.json();
@@ -86,18 +87,30 @@ gulp.task('styles', function() {
            .pipe(livereload(lrPort));
 });
 
+gulp.task('less', function() {
+    return gulp.src('bower_components/flat-ui/less/flat-ui.less')
+           .pipe(plumber(plumberOpt))
+           .pipe(less())
+           .pipe(gulp.dest('public/styles/'))
+           .pipe(livereload(lrPort));
+});
+
 gulp.task('serve', function() {
     var app = express();
     app.use(express.static('public'));
     app.use(express.static('bower_components/fui-angular'));
+    app.use(express.static('bower_components/flat-ui'));
     app.use(express.static('bower_components'));
     app.post('/', jsonParser, function(req, res) {
         //
     });  
     app.listen(appPort);
+    console.log('Serving site on http://' + location.hostname + ':' + appPort);
 });
 
-gulp.task('default_watch', function() {
+gulp.task('watch', function() {
+    livereload.listen(lrOpt);
+    console.log('Reload server started on http://' + lrOpt.host + ':' + lrOpt.port);
     gulp.watch('src/assets/**/*', ['assets']);
     gulp.watch('src/vendor/**/*', ['vendor']);
     gulp.watch('src/**/*.html', ['html']);
@@ -106,9 +119,12 @@ gulp.task('default_watch', function() {
     gulp.watch('src/**/*.jade', ['jade']);
     gulp.watch('src/styles/**/*.styl', ['stylus','jade']);
     gulp.watch('src/scripts/**/*.coffee', ['coffee','jade']);
+    gulp.watch('bower_components/flat-ui/less/**/*', ['less']);
 });
 
-gulp.task('default', ['html',
+gulp.task('default', ['clean',
+                      'less',
+                      'html',
                       'jade',
                       'scripts',
                       'coffee',
@@ -116,4 +132,4 @@ gulp.task('default', ['html',
                       'stylus',
                       'extern',
                       'serve',
-                      'default_watch']);
+                      'watch']);

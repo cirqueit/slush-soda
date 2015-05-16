@@ -8,6 +8,7 @@ html
         meta(name="apple-mobile-web-app-status-bar-style" content="black")
         link(rel='stylesheet', href='/flat-ui/dist/css/vendor/bootstrap.min.css')
         link(rel='stylesheet', href='/flat-ui/dist/css/flat-ui.min.css')
+        link(rel='stylesheet', href='styles/flat-ui.css')
         //HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.
         //[if lt IE 9]
         script(src="/flat-ui/dist/js/vendor/html5shiv.js")
@@ -16,39 +17,62 @@ html
                            
     body(ng-app="flatuiApp")
         div.container(ng-controller="FlatUICtrl")
-            p.lorem_s1_2x3
             div.row
-                div.col-md-3
+            hr
+            div.row
+                div.col-xs-12
+                    p.lorem_s2_4x8
+            hr
+            div.row
+                div.col-xs-3
+                div.col-xs-3
                      fui-checkbox(ng-model="modelCheckbox1" ng-disabled="false" id="Checkbox1") modelCheckbox1={{modelCheckbox1}}
+                div.col-xs-3
                      button.btn.btn-wide.btn-default(ng-click="modelCheckbox1=!modelCheckbox1") toggle modelCheckbox1
-                     hr
-
+            div.row
+                div.col-xs-3
+                div.col-xs-3
                      fui-checkbox(ng-model="modelCheckbox2" id="Checkbox2") modelCheckbox2={{modelCheckbox2}}
+                div.col-xs-3
                      button.btn.btn-wide.btn-default(ng-click="modelCheckbox2=!modelCheckbox2" ng-init="modelCheckbox2 = true") toggle modelCheckbox2
-                div.col-md-3
+            hr
+            div.row
+                div.col-xs-3
+                div.col-xs-3
                     fui-switch(ng-model="modelSwitch1" ng-init="modelSwitch1 = true")
+                div.col-xs-3
                     fui-switch(ng-model="modelSwitch1" data-on-color="success" data-on-text="Hi" data-off-text="By")
-                    hr
-
+            hr
+            div.row
+                div.col-xs-3
+                div.col-xs-3
                     fui-switch(ng-model="modelSwitch2" data-on-color="info")
+                div.col-xs-3
                     button.btn.btn-wide.btn-default(ng-click="modelSwitch2=!modelSwitch2" style="margin-top: 5px;") toggle modelSwitch2
-                    hr
-
-                    fui-switch(ng-model="modelSwitch3" data-on-color="warning" data-off-color="danger" ng-init="modelSwitch3=true")
+            hr
+            div.row
+                div.col-xs-3
                     span.label.label-default modelSwitch3 = {{modelSwitch3}}
-                    hr
-
+                div.col-xs-3
+                    fui-switch(ng-model="modelSwitch3" data-on-color="warning" data-off-color="danger" ng-init="modelSwitch3=true")
+            hr
+            div.row
+                div.col-xs-3
+                div.col-xs-3
                     fui-switch(ng-disabled="true" ng-model="modelSwitch4")
+                div.col-xs-3
                     fui-switch(ng-disabled="true" ng-model="modelSwitch5" ng-init="modelSwitch5=true")
-                                                
-                div.col-md-3
+            hr
+            div.row
+                div.col-xs-3
+                    span.label.label-default modelRadioGroup1 = {{modelRadioGroup1}}
+                div.col-xs-3
                     fui-radio(ng-value="0" name="group1" id="r0" ng-model="modelRadioGroup1" ng-init="modelRadioGroup1=0") Radio 0
                     fui-radio(ng-value="1" name="group1" id="r1" ng-model="modelRadioGroup1") Radio 1
                     fui-radio(ng-value="2" name="group1" id="r2" ng-model="modelRadioGroup1") Radio 2
                     fui-radio(ng-value="3" name="group1" id="r3" ng-model="modelRadioGroup1") Radio 3
                     fui-radio(ng-value="4" name="group1" id="r4" ng-model="modelRadioGroup1" ng-disabled="true") Radio disabled
-
-                    span.label.label-default modelRadioGroup1 = {{modelRadioGroup1}}
+                div.col-xs-3
                     button.btn.btn-wide.btn-default(ng-click="modelRadioGroup1=2") set modelRadioGroup1=2
                                                             
 
@@ -63,5 +87,4 @@ html
         script(src="/flat-ui/dist/js/vendor/jquery.min.js")
         script(src="/flat-ui/dist/js/flat-ui.min.js")
         script(src="/lorem/src/library/lorem.js")
-        script (function($) { $('.container').ipsum();}(jQuery));
-        script videojs.options.flash.swf = "/flat-ui/dist/js/vendors/video.-js.swf"
+        script (function($) { $('.container').ipsum();}(jQuery)); // script videojs.options.flash.swf = "/flat-ui/dist/js/vendors/video.-js.swf"
