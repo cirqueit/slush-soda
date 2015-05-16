@@ -75,7 +75,13 @@ html
                 div.col-xs-3
                     button.btn.btn-wide.btn-default(ng-click="modelRadioGroup1=2") set modelRadioGroup1=2
                                                             
-
+            hr
+            div.row
+                div.col-xs-8
+                    video.video-js(preload="auto" poster="docs/assets/img/video/poster.jpg" data-setup="{}")
+                        source(src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4")
+                        source(src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm")
+                            
         script(src="/angular/angular.min.js")
         script(src="/scripts/app.js")
         script(src="/scripts/controllers/flatui.ctrl.js")
@@ -84,7 +90,8 @@ html
         script(src="/fui-angular/fui-checkbox.js")
         script(src="/fui-angular/fui-switch.js")
         script(src="/flat-ui/dist/js/vendor/jquery.min.js")
-        script(src="/flat-ui/dist/js/vendor/jquery.min.js")
+        script(src="/flat-ui/dist/js/vendor/video.js")
         script(src="/flat-ui/dist/js/flat-ui.min.js")
         script(src="/lorem/src/library/lorem.js")
-        script (function($) { $('.container').ipsum();}(jQuery)); // script videojs.options.flash.swf = "/flat-ui/dist/js/vendors/video.-js.swf"
+        script (function($) { $('.container').ipsum();}(jQuery));
+        script videojs.options.flash.swf = "/flat-ui/dist/js/vendors/video-js.swf"
