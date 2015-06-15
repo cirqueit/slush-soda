@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     stylus = require('gulp-stylus'),
     sourcemaps = require('gulp-sourcemaps'),
+    react = require('gulp-react'),
     babel = require('gulp-babel'),
     coffee = require('gulp-coffee'),
     livereload = require('gulp-livereload'),
@@ -57,6 +58,16 @@ gulp.task('coffee', function() {
            .pipe(plumber(plumberOpt))
            .pipe(sourcemaps.init())
            .pipe(coffee({bare: true}))
+           .pipe(sourcemaps.write('../maps'))
+           .pipe(gulp.dest('public/scripts/'))
+           .pipe(livereload(lrPort));
+});
+
+gulp.task('react', function() {
+    return gulp.src('src/scripts/**/*.jsx')
+           .pipe(plumber(plumberOpt))
+           .pipe(sourcemaps.init())
+           .pipe(react())
            .pipe(sourcemaps.write('../maps'))
            .pipe(gulp.dest('public/scripts/'))
            .pipe(livereload(lrPort));
@@ -114,12 +125,13 @@ gulp.task('watch', function() {
     gulp.watch('src/assets/**/*', ['assets']);
     gulp.watch('src/vendor/**/*', ['vendor']);
     gulp.watch('src/**/*.html', ['html']);
-    gulp.watch('src/scripts/**/*.js', ['scripts', 'html']);
-    gulp.watch('src/styles/**/*.css', ['styles', 'html']);
+    gulp.watch('src/scripts/**/*.js', ['scripts', 'html', 'jade']);
+    gulp.watch('src/styles/**/*.css', ['styles', 'html', 'jade']);
     gulp.watch('src/**/*.jade', ['jade']);
-    gulp.watch('src/styles/**/*.styl', ['stylus','jade']);
-    gulp.watch('src/scripts/**/*.coffee', ['coffee','jade']);
-    gulp.watch('bower_components/flat-ui/less/**/*', ['less']);
+    gulp.watch('src/styles/**/*.styl', ['stylus', 'html', 'jade']);
+    gulp.watch('src/scripts/**/*.coffee', ['coffee','html', 'jade']);
+    gulp.watch('src/scripts/**/*.jsx', ['react','html','jade']);
+    gulp.watch('bower_components/flat-ui/less/**/*', ['less', 'html', 'jade']);
 });
 
 gulp.task('default', ['clean',
@@ -128,6 +140,7 @@ gulp.task('default', ['clean',
                       'jade',
                       'scripts',
                       'coffee',
+                      'react',
                       'styles',
                       'stylus',
                       'extern',
