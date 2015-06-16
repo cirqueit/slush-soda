@@ -1,0 +1,30 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title FlatUI React/D3 Template
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black")
+        link(rel='stylesheet', href='/flat-ui/dist/css/vendor/bootstrap.min.css')
+        link(rel='stylesheet', href='/flat-ui/dist/css/flat-ui.min.css')
+        link(rel='stylesheet', href='styles/flat-ui.css')
+        //HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file.
+        //[if lt IE 9]
+        script(src="/flat-ui/dist/js/vendor/html5shiv.js")
+        script(src="/flat-ui/dist/js/vendor/respond.min.js")
+        //[endif]
+                           
+    body
+        div#content
+
+        script(src="/react/react.min.js")
+        script(src="/d3/d3.min.js")
+        script(src="/marked/lib/marked.js")
+        script(src="/flat-ui/dist/js/vendor/jquery.min.js")
+        script(src="/flat-ui/dist/js/vendor/video.js")
+        script(src="/flat-ui/dist/js/flat-ui.min.js")
+        script(src="/lorem/src/library/lorem.js")
+        script (function($) { $('.container').ipsum();}(jQuery));
+        script videojs.options.flash.swf = "/flat-ui/dist/js/vendors/video-js.swf"
+        script(src="/scripts/reapp.js")
