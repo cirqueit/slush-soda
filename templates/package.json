@@ -27,8 +27,7 @@
     "gulp-react": "^3.0.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-stylus": "^2.0.1",
-    "gulp-util": "^3.0.4",
-    "ip": "^0.3.2"
+    "gulp-util": "^3.0.4"
   },
   "browser": {}
 }

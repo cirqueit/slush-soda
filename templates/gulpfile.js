@@ -15,12 +15,22 @@ var gulp = require('gulp'),
     embedlr = require('gulp-embedlr'),
     express = require('express'),
     bodyParser = require('body-parser'),
-    ip = require('ip');
+    os = require('os');
+
+var local = false,
+    hosts = [],
+    iface = os.networkInterfaces();
+
+for (var key in iface) {
+    if (local || iface[key][0].address.substring(0,3) !== '127') {
+        hosts.push(iface[key][0].address);
+    }
+}
 
 var appPort = 9001,
     lrPort = 35728,
-    lrOpt = {host: ip.address(), port: lrPort},
-    location = { hostname: ip.address()},
+    location = { hostname: hosts[0] },
+    lrOpt = { host: hosts[0], port: lrPort },
     inlineOpt = { minify: false },
     plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}},
     jsonParser = bodyParser.json();
@@ -112,8 +122,24 @@ gulp.task('serve', function() {
     app.use(express.static('bower_components/fui-angular'));
     app.use(express.static('bower_components/flat-ui'));
     app.use(express.static('bower_components'));
-    app.post('/', jsonParser, function(req, res) {
-        //
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.post('/data.json', function(req, res) {
+        fs.readFile('data.json', 'utf8', function(err, data) {
+            var json = JSON.parse(data);
+            json.push(req.body);
+
+            fs.writeFile('data.json', JSON.stringify(json), function(err) {
+                res.setHeader('Cache-Control', 'no-cache');
+                res.send(json);
+            });
+        });
+    });  
+    app.get('/data.json', function(req, res) {
+        fs.readFile('data.json', function(err, data) {
+            res.setHeader('Cache-Control', 'no-cache');
+            res.json(JSON.parse(data));
+        });
     });  
     app.listen(appPort);
     console.log('Serving site on http://' + location.hostname + ':' + appPort);
