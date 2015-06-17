@@ -32,8 +32,7 @@ var appPort = 9001,
     location = { hostname: hosts[0] },
     lrOpt = { host: hosts[0], port: lrPort },
     inlineOpt = { minify: false },
-    plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}},
-    jsonParser = bodyParser.json();
+    plumberOpt = { errorHandler: function (err) { gutil.beep(); gutil.log(err);}};
 
 gulp.task('clean', function() {
     return del.sync(['public']);
@@ -125,7 +124,7 @@ gulp.task('serve', function() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
     app.post('/data.json', function(req, res) {
-        fs.readFile('data.json', 'utf8', function(err, data) {
+        fs.readFile('data.json', function(err, data) {
             var json = JSON.parse(data);
             json.push(req.body);
 
